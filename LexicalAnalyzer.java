@@ -4,20 +4,20 @@ import java.util.*;
 public class LexicalAnalyzer {
     public static void main(String[] args) {
         // creating hash maps that act as symbol tables
-        HashMap<String, Integer> keyWordMap = new HashMap<String, Integer>();
+        HashMap<String, Integer> keywordMap = new HashMap<String, Integer>();
         HashMap<String, Integer> operatorMap = new HashMap<String, Integer>();
         HashMap<String, Integer> separatorMap = new HashMap<String, Integer>();
         HashMap<String, Integer> digitMap = new HashMap<String, Integer>();
         HashMap<String, Integer> characterMap = new HashMap<String, Integer>();
 
         // initializing keyword map
-        keyWordMap.put("if", 0);
-        keyWordMap.put("then", 0);
-        keyWordMap.put("else", 0);
-        keyWordMap.put("for", 0);
-        keyWordMap.put("while", 0);
-        keyWordMap.put("begin", 0);
-        keyWordMap.put("end", 0);
+        keywordMap.put("if", 0);
+        keywordMap.put("then", 0);
+        keywordMap.put("else", 0);
+        keywordMap.put("for", 0);
+        keywordMap.put("while", 0);
+        keywordMap.put("begin", 0);
+        keywordMap.put("end", 0);
 
         // init operator map
         operatorMap.put("+", 0);
@@ -80,6 +80,13 @@ public class LexicalAnalyzer {
         characterMap.put("y", 0);
         characterMap.put("z", 0);
 
+        //counters
+        int keywordCount = 0;
+        int operatorCount = 0;
+        int separatorCount = 0;
+        int digitCount = 0;
+        int characterCount = 0;
+
         
         String fileName = " ";
         //TODO: prompt for file?
@@ -98,25 +105,30 @@ public class LexicalAnalyzer {
                 String lineArr[] = currentLine.split(" ");
                 for (int i = 0; i < lineArr.length; i++) {
                     String key = lineArr[i];
-                    if (keyWordMap.containsKey(key)) {
-                        int val = keyWordMap.get(key);
-                        keyWordMap.put(key, val + 1); //increase token count
+                    if (keywordMap.containsKey(key)) {
+                        int val = keywordMap.get(key);
+                        keywordMap.put(key, val + 1); //increase token count
+                        keywordCount++; //increase overall keyword count
                     }
                     else if (operatorMap.containsKey(key)) {
                         int val = operatorMap.get(key);
                         operatorMap.put(key, val + 1); //increase token count
+                        operatorCount++; //increase overall operator count
                     }
                     else if (separatorMap.containsKey(key)) {
                         int val = separatorMap.get(key);
                         separatorMap.put(key, val + 1); //increase token count
+                        separatorCount++; //increase overall separator count
                     }
                     else if (digitMap.containsKey(key)) {
                         int val = digitMap.get(key);
                         digitMap.put(key, val + 1); //increase token count
+                        digitCount++; //increase overall digit count
                     }
                     else if (characterMap.containsKey(key)) {
                         int val = characterMap.get(key);
                         characterMap.put(key, val + 1); //increase token count
+                        characterCount++; //increase overall character count
                     }
                 }
 
@@ -132,41 +144,55 @@ public class LexicalAnalyzer {
         }
 
         //printing the results of lexical analysis
-        System.out.print("Keywords:");
-        for (String key : keyWordMap.keySet()) {
-            int val = keyWordMap.get(key);
+        System.out.println("Keywords:");
+        for (String key : keywordMap.keySet()) {
+            int val = keywordMap.get(key);
             if (val != 0) {
                 System.out.println(key + " : " + val);
             }
         }
-        System.out.print("Operators:");
+        System.out.println("-----------------");
+        System.out.println("Total numbers of keywords: " + keywordCount);
+
+        System.out.println("Operators: ");
         for (String key : operatorMap.keySet()) {
             int val = operatorMap.get(key);
             if (val != 0) {
                 System.out.println(key + " : " + val);
             }
         }
-        System.out.print("Separators:");
+        System.out.println("-----------------");
+        System.out.println("Total numbers of operators: " + operatorCount);
+
+        System.out.println("Separators:");
         for (String key : separatorMap.keySet()) {
             int val = separatorMap.get(key);
             if (val != 0) {
                 System.out.println(key + " : " + val);
             }
         }
-        System.out.print("Digits:");
+        System.out.println("-----------------");
+        System.out.println("Total numbers of separators: " + separatorCount);
+
+        System.out.println("Digits:");
         for (String key : digitMap.keySet()) {
             int val = digitMap.get(key);
             if (val != 0) {
                 System.out.println(key + " : " + val);
             }
         }
-        System.out.print("Characters:");
+        System.out.println("-----------------");
+        System.out.println("Total numbers of digits: " + digitCount);
+
+        System.out.println("Characters:");
         for (String key : characterMap.keySet()) {
             int val = characterMap.get(key);
             if (val != 0) {
                 System.out.println(key + " : " + val);
             }
         }
+        System.out.println("-----------------");
+        System.out.println("Total numbers of characters: " + characterCount);
 
     }
 }
