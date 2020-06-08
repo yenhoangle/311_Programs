@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+import java.net.URL;
 
 public class LexicalAnalyzer {
     public static void main(String[] args) {
@@ -87,8 +88,9 @@ public class LexicalAnalyzer {
         int digitCount = 0;
         int characterCount = 0;
 
+        URL path = LexicalAnalyzer.class.getResource("input.txt");
+        String fileName = path.getFile();
         
-        String fileName = " ";
         //TODO: prompt for file?
 
         try {
