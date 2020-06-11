@@ -1,3 +1,7 @@
+/* Yen Le
+ * CS 311
+ * Assignment 1 */
+
 import java.io.*;
 import java.util.*;
 import java.net.URL;
@@ -91,8 +95,6 @@ public class LexicalAnalyzer {
         URL path = LexicalAnalyzer.class.getResource("input.txt");
         String fileName = path.getFile();
         
-        //TODO: prompt for file?
-
         try {
             File testFile = new File(fileName);
             if (!testFile.exists()) {
