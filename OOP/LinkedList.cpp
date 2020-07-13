@@ -49,7 +49,7 @@ int main() {
     cin >> count;
     int data;
     for(int i = 0; i < count; i++) {
-        cout << "Enter data to insert into the list: ";
+        cout << "Enter number to insert into the list: ";
         cin >> data;
         list.insert(data);
     }
